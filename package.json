@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"echarts": "^5.4.0",
 		"klinecharts": "^8.6.3"
 	}
 }

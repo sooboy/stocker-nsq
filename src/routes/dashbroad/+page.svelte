@@ -1,10 +1,16 @@
 <script>
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import { init, dispose } from 'klinecharts';
 
 	onMount(() => {
 		// Init chart
 		const chart = init('simple_chart');
+
+		chart.setStyleOptions({
+                    candle: {
+                      type: 'candle_solid'
+                    }
+        })
 		// Create main technical indicator MA
 		chart.createTechnicalIndicator('MA', false, { id: 'candle_pane' });
 		// Create sub technical indicator VOL
@@ -92,11 +98,16 @@
 				volume: 76
 			}
 		]);
+
+		return ()=> dispose("simple_chart")
 	});
 
-	onDestroy(() => {
-		dispose('simple_chart');
-	});
 </script>
 
 <div id="simple_chart" />
+
+<style>
+	#simple_chart {
+		min-height:500px
+	}
+</style>
